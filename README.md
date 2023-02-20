@@ -1,4 +1,4 @@
-# XiletradeJson
+# XiletradeJson - [Download v1.0.0](https://github.com/maxensas/xiletradejson/releases/download/1.8.0/XiletradeJson_win-x64.7z)  
 
 [![Release](https://img.shields.io/github/release/maxensas/xiletradejson.svg)](https://github.com/maxensas/xiletradejson/releases/) 
 [![Github all releases](https://img.shields.io/github/downloads/maxensas/xiletradejson/total.svg)](https://GitHub.com/maxensas/xiletradejson/releases/) [![Github latest release](https://img.shields.io/github/downloads/maxensas/xiletradejson/latest/total.svg)](https://GitHub.com/maxensas/xiletradejson/releases/)
