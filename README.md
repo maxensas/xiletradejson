@@ -5,7 +5,7 @@
 
 ### What is XiletradeJson?
 XiletradeJson is a tiny console app used to generate json files consumed by [Xiletrade price checker](https://github.com/maxensas/xiletrade)  
-Developed under .NET7 C# and made available to all tool developers as an example of using [libGGPK3](https://github.com/aianlinb/LibGGPK3) library made by [aianlinb](https://github.com/aianlinb)
+Developed under .NET7 C# and made available to all tool developers as an example of using [libGGPK3](https://github.com/aianlinb/LibGGPK3) by [aianlinb](https://github.com/aianlinb)
 
 ### Prerequisites for use :
 Like all other PoE tools, DAT Schemas located in 'DatDefinitions.json' need to be updated at each PoE release that adds breaking changes.
