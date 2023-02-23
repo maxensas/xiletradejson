@@ -120,7 +120,8 @@ namespace XiletradeJson
                         ResultData d = new()
                         {
                             ID = csv.GetField(0),
-                            InheritsFrom = Strings.Parser.ModsInherits
+                            InheritsFrom = Strings.Parser.ModsInherits,
+                            Name = ParseMultipleName(csv.GetField(9))
                         };
                         
                         bool checkId = false;
