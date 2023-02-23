@@ -3,6 +3,8 @@ using System.Text;
 using CsvHelper.Configuration;
 using System.Globalization;
 using CsvHelper;
+using System.Data;
+using System.Collections.Generic;
 
 namespace XiletradeJson
 {
@@ -89,17 +91,17 @@ namespace XiletradeJson
                         }
                         else
                         {
-                            d.NameEn = csv.GetField(4);
+                            d.NameEn = d.Name;
                         }
 
                         bool continueLoop = false;
 
-                        if (d.Name.Contains(Strings.Parser.NameBaseUnwanted, StringComparison.Ordinal))
+                        if (d.Name!.Contains(Strings.Parser.NameBaseUnwanted, StringComparison.Ordinal))
                         {
                             continueLoop = true;
                         }
                         if (d.InheritsFrom == Strings.Parser.StackableCurrency && 
-                            !d.ID.Contains(Strings.Parser.IncursionVial, StringComparison.Ordinal))
+                            !d.ID!.Contains(Strings.Parser.IncursionVial, StringComparison.Ordinal))
                         {
                             continue;
                         }
@@ -117,6 +119,11 @@ namespace XiletradeJson
                     }
                     if (isMods)
                     {
+                        if (csv.GetField(9)?.Length == 0)
+                        {
+                            continue;
+                        }
+
                         ResultData d = new()
                         {
                             ID = csv.GetField(0),
@@ -138,17 +145,6 @@ namespace XiletradeJson
                             continue;
                         }
 
-                        StringBuilder sb = new(csv.GetField(9));
-                        if (sb.Length == 0)
-                        {
-                            continue;
-                        }
-                        foreach (var kvp in Strings.Parser.ModNameFix)
-                        {
-                            sb.Replace(kvp.Key, kvp.Value);
-                        }
-                        d.Name = sb.ToString();
-
                         if (ModsEn is not null)
                         {
                             var resultDat = ModsEn.Result?[0].Data?.FirstOrDefault(x => x.ID == d.ID);
@@ -160,7 +156,7 @@ namespace XiletradeJson
                         }
                         else
                         {
-                            d.NameEn = sb.ToString();
+                            d.NameEn = d.Name;
                         }
 
                         if (listResultData.FirstOrDefault(x => x.Name == d.Name) == null) listResultData.Add(d);
@@ -185,7 +181,7 @@ namespace XiletradeJson
                         }
                         else
                         {
-                            d.NameEn = csv.GetField(32);
+                            d.NameEn = d.Name;
                         }
                         if (listResultData.FirstOrDefault(x => x.Name == d.Name) == null) listResultData.Add(d);
                     }
@@ -193,28 +189,10 @@ namespace XiletradeJson
                     {
                         WordResultData d = new()
                         {
-                            Name = csv.GetField(5)?.Trim(),
-                            NameEn = csv.GetField(1)?.Trim()
+                            NameEn = csv.GetField(1)?.Trim(),
+                            Name = ParseMultipleName(csv.GetField(5))
                         };
-                        
-                        StringBuilder sb = new(d.Name);
-                        foreach (var kvp in Strings.Parser.WordNameFix)
-                        {
-                            sb.Replace(kvp.Key, kvp.Value);
-                        }
-                        string[] tempName = sb.ToString().Split('/');
 
-                        for (int k = 0; k < tempName.Length; k++)
-                        {
-                            if (d.Name == null)
-                            {
-                                d.Name = tempName[k].Trim();
-                            }
-                            else if (!d.Name.Contains(tempName[k].Trim(), StringComparison.Ordinal))
-                            {
-                                d.Name = d.Name + '/' + tempName[k].Trim();
-                            }
-                        }
                         if (listWordResultData.FirstOrDefault(x => x.Name == d.Name) == null) listWordResultData.Add(d);
                     }
                 }
@@ -230,6 +208,21 @@ namespace XiletradeJson
                 throw;
                 //string mess = e.Message;
             }
+        }
+
+        internal static string? ParseMultipleName(string? str) // Grammatical Rules
+        {
+            if (str!.StartsWith(Strings.Parser.NameRules[0].Key, StringComparison.Ordinal))
+            {
+                StringBuilder sb = new(str);
+                foreach (var kvp in Strings.Parser.NameRules)
+                {
+                    sb.Replace(kvp.Key, kvp.Value);
+                }
+                var tmpList = sb.ToString().Split('/', StringSplitOptions.TrimEntries).Distinct();
+                return String.Join('/', tmpList);
+            }
+            return str.Trim();
         }
 
         internal static string? WriteJson(string datName, string jsonPath, List<ResultData> listResultData)

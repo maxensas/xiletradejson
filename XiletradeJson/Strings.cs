@@ -73,16 +73,7 @@
             internal static readonly KeyValuePair<string, string> MetaItem = new("Metadata/Items/", string.Empty);
             internal static readonly KeyValuePair<string, string> MetaMonster = new("Metadata/Monsters/", string.Empty);
             
-            internal static readonly KeyValuePair<string, string>[] ModNameFix = {
-                new("<if:MS>{", string.Empty),
-                new("}<elif:FS>{", "/"),
-                new("}<elif:NS>{", "/"),
-                new("}<elif:MP>{", "/"),
-                new("}<elif:FP>{", "/"),
-                new("}<elif:NP>{", "/"),
-                new("}", string.Empty)
-            };
-            internal static readonly KeyValuePair<string, string>[] WordNameFix = {
+            internal static readonly KeyValuePair<string, string>[] NameRules = {
                 new("<if:MS>{", string.Empty),
                 new("}<elif:FS>{", "/"),
                 new("}<elif:NS>{", "/"),
