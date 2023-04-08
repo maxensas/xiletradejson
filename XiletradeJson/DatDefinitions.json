@@ -633,19 +633,21 @@
 		"ModDomainsKey": "i32",
 		"SiteVisibility": "i32",
 		"ItemVisualIdentityKey": "foreignrow",
-		"HASH": "u32",
+		"HASH": "i32",
 		"VendorRecipe_AchievementItemsKeys": "array|foreignrow",
 		"Inflection": "string",
 		"Equip_AchievementItemsKey": "foreignrow",
 		"IsCorrupted": "bool",
-		"Identify_AchievementItemsKeys": "array|foreignrow",
-		"IdentifyMagic_AchievementItemsKeys": "array|foreignrow",
+		"Identify_AchievementItems": "foreignrow",
+		"IdentifyMagic_AchievementItems": "foreignrow",
 		"FragmentBaseItemTypesKey": "row",
 		"IsMapDropOnly": "bool",
+		"Unknown0": "foreignrow",
 		"Unknown1": "foreignrow",
-		"Unknown2": "foreignrow",
-		"Unknown3": "bool",
-		"Unknown4": "foreignrow"
+		"Flag0": "bool",
+		"TradeMarketCategory": "foreignrow",
+		"Flag1": "bool",
+		"Achievement": "foreignrow"
 	},
 	"BattlePasses": {
 		"Id": "string",
@@ -4764,7 +4766,7 @@
 		"Unknown19": "i32",
 		"Unknown20": "i32",
 		"Unknown21": "i32",
-		"Flag1": "i8",
+		"Flag1": "bool",
 		"Unknown22": "string",
 		"KillWhileOnslaughtIsActive_AchievementItemsKey": "foreignrow",
 		"MonsterSegmentsKey": "foreignrow",
@@ -4805,7 +4807,10 @@
 		"Unknown38": "array|string",
 		"Unknown39": "i32",
 		"Unknown40": "i32",
-		"Unknown41": "i32"
+		"Unknown41": "i32",
+		"Unknown42": "i32",
+		"Unknown43": "i32",
+		"Flag9": "bool"
 	},
 	"MonsterVarietiesArtVariations": {
 		"Id": "string",
