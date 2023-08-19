@@ -266,7 +266,7 @@ namespace XiletradeJson
                     ModsEn = mods;
                 }
 
-                outputJson = jsonPath + datName + ".json";
+                outputJson = jsonPath + "Mods.json";
                 using (StreamWriter writer = new(outputJson, false, Encoding.UTF8))
                 {
                     writer.Write(Json.Serialize<Mods>(mods));
@@ -306,7 +306,7 @@ namespace XiletradeJson
                 words.Result[0].Data = new WordResultData[listWordResultData.Count];
                 words.Result[0].Data = listWordResultData.ToArray();
 
-                outputJson = jsonPath + datName + ".json";
+                outputJson = jsonPath + "Words.json";
                 using (StreamWriter writer = new(outputJson, false, Encoding.UTF8))
                 {
                     writer.Write(Json.Serialize<Words>(words));

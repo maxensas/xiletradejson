@@ -101,8 +101,8 @@ try
         foreach (var datName in Strings.DatNames)
         {
             string dat = datName + ".dat64";
-            string langDir = lang.Key is "English" ? string.Empty : lang.Key + "\\";
-            string datDir = "Data\\" + langDir + dat;
+            string langDir = lang.Key is "english" ? string.Empty : lang.Key + "\\";
+            string datDir = "data\\" + langDir + dat;
 
             var node = ggpk.Index.FindNode(datDir);
             if (node == null)

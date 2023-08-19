@@ -3,10 +3,10 @@
     // Optimization in order to avoid unnecessary string allocations.
     internal static class Strings
     {
-        internal static readonly string BaseItemTypes = "BaseItemTypes";
-        internal static readonly string Mods = "Mods";
-        internal static readonly string MonsterVarieties = "MonsterVarieties";
-        internal static readonly string Words = "Words";
+        internal static readonly string BaseItemTypes = "baseitemtypes";
+        internal static readonly string Mods = "mods";
+        internal static readonly string MonsterVarieties = "monstervarieties";
+        internal static readonly string Words = "words";
         
         internal static readonly string[] DatNames = { BaseItemTypes, Mods, MonsterVarieties, Words };
         internal static readonly string[] PathGgpk = {
@@ -21,20 +21,20 @@
         };
 
         internal static readonly KeyValuePair<string, string>[] GlobalLang = {
-            new("English", "en-US"),
-            new("French", "fr-FR"),
-            new("German", "de-DE"),
-            new("Japanese", "ja-JP"),
-            new("Korean", "ko-KR"),
-            new("Portuguese", "pt-BR"),
-            new("Russian", "ru-RU"),
-            new("Spanish", "es-ES"),
-            new("Thai", "th-TH"),
-            new("Traditional Chinese", "zh-TW")
+            new("english", "en-US"),
+            new("french", "fr-FR"),
+            new("german", "de-DE"),
+            new("japanese", "ja-JP"),
+            new("korean", "ko-KR"),
+            new("portuguese", "pt-BR"),
+            new("russian", "ru-RU"),
+            new("spanish", "es-ES"),
+            new("thai", "th-TH"),
+            new("traditional chinese", "zh-TW")
         };
         internal static readonly KeyValuePair<string, string>[] TencentLang = {
-            new("English", "en-US"),
-            new("Simplified Chinese", "zh-CN")
+            new("english", "en-US"),
+            new("simplified chinese", "zh-CN")
         };
         internal static readonly KeyValuePair<int, string>[] BasesIndex = {
             new(0, "Id"),
