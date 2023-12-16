@@ -526,7 +526,7 @@
 		"Tier": "i32",
 		"Unknown1": "i32",
 		"Unknown2": "i32",
-		"Flag0":  "bool"
+		"Flag0": "bool"
 	},
 	"AtlasPassiveSkillTreeGroupType": {
 		"Unknown0": "string"
@@ -647,7 +647,8 @@
 		"Flag0": "bool",
 		"TradeMarketCategory": "foreignrow",
 		"Flag1": "bool",
-		"Achievement": "foreignrow"
+		"Achievement": "foreignrow",
+		"Unknown2": "foreignrow"
 	},
 	"BattlePasses": {
 		"Id": "string",
@@ -1531,7 +1532,7 @@
 	"DamageHitEffects": {
 		"RowID": "i32",
 		"Unknown0": "i32",
-		"Unknown1":  "i32",
+		"Unknown1": "i32",
 		"Variation1": "foreignrow",
 		"Variation2": "foreignrow"
 	},
@@ -1848,7 +1849,7 @@
 		"Name": "string",
 		"Unlocked_StatsKey": "foreignrow",
 		"ControllerHoverMessageConnected": "string",
-		"ControllerHoverMessageDisconnected":  "string"
+		"ControllerHoverMessageDisconnected": "string"
 	},
 	"DropEffects": {
 		"Id": "string",
@@ -2346,6 +2347,19 @@
 	"GameStats": {
 		"Unknown0": "string",
 		"Unknown1": "string"
+	},
+	"GemEffects": {
+		"Id": "string",
+		"Name": "string",
+		"GrantedEffect": "foreignrow",
+		"GrantedEffectHardmode": "foreignrow",
+		"GrantedEffect2": "foreignrow",
+		"GrantedEffect2Hardmode": "foreignrow",
+		"SupportText": "string",
+		"SupportName": "string",
+		"GemTags": "array|foreignrow",
+		"Consumed_ModsKey": "foreignrow",
+		"ItemColor": "i32"
 	},
 	"GemTags": {
 		"Id": "string",
@@ -5792,12 +5806,12 @@
 		"Frame_ArtFile": "string"
 	},
 	"SingleGroundLaser": {
-        "Index": "i32",
+		"Index": "i32",
 		"Unknown1": "foreignrow",
 		"Unknown2": "foreignrow",
 		"Unknown3": "i32",
 		"Unknown4": "string",
-        "Flag0": "bool",
+		"Flag0": "bool",
 		"Unknown5": "i32",
 		"Flag1": "bool",
 		"Unknown6": "i32",
@@ -6183,7 +6197,7 @@
 		"Flag8": "bool",
 		"Flag9": "bool",
 		"Script1": "string",
-		"Data0": "array|i32", 
+		"Data0": "array|i32",
 		"Unknown14": "i32",
 		"Unknown15": "i32",
 		"Unknown16": "i32",

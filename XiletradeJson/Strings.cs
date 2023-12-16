@@ -7,8 +7,9 @@
         internal static readonly string Mods = "mods";
         internal static readonly string MonsterVarieties = "monstervarieties";
         internal static readonly string Words = "words";
-        
-        internal static readonly string[] DatNames = { BaseItemTypes, Mods, MonsterVarieties, Words };
+        internal static readonly string Gems = "gemeffects";
+
+        internal static readonly string[] DatNames = { BaseItemTypes, Mods, MonsterVarieties, Words, Gems };
         internal static readonly string[] PathGgpk = {
             "C:\\Path of Exile\\Content.ggpk",
             "C:\\Jeux\\Path of Exile\\Content.ggpk",
@@ -53,6 +54,10 @@
         internal static readonly KeyValuePair<int, string>[] WordsIndex = {
             new(1, "Text"),
             new(5, "Text2")
+        };
+        internal static readonly KeyValuePair<int, string>[] GemsIndex = {
+            new(0, "Id"),
+            new(1, "Name")
         };
 
         internal static class Parser

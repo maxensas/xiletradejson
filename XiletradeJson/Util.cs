@@ -39,19 +39,17 @@ namespace XiletradeJson
                 bool isMods = datName == Strings.Mods;
                 bool isMonsters = datName == Strings.MonsterVarieties;
                 bool isWords = datName == Strings.Words;
+                bool isGems = datName == Strings.Gems;
 
-                KeyValuePair<int, string>[]? arrayIndex = isBases ? Strings.BasesIndex
+                KeyValuePair<int, string>[]? arrayIndex = (isBases ? Strings.BasesIndex
                             : isMods ? Strings.ModsIndex
                             : isMonsters ? Strings.MonstersIndex
-                            : isWords ? Strings.WordsIndex : null;
-
-                if (arrayIndex is null)
-                {
-                    throw new Exception("Header not found for DAT : " + datName);
-                }
-
+                            : isWords ? Strings.WordsIndex
+                            : isGems ? Strings.GemsIndex: null) ?? throw new Exception("Header not found for DAT : " + datName);
+                
                 List<ResultData> listResultData = new();
                 List<WordResultData> listWordResultData = new();
+                List<GemResultData> listGemResultData = new();
 
                 // PARSING CSV TO JSON
                 string[]? header = null;
@@ -195,11 +193,29 @@ namespace XiletradeJson
 
                         if (listWordResultData.FirstOrDefault(x => x.Name == d.Name) == null) listWordResultData.Add(d);
                     }
+                    if (isGems)
+                    {
+                        GemResultData d = new()
+                        {
+                            Id = csv.GetField(0)?.Trim(),
+                            Name = csv.GetField(1)?.Trim()
+                        };
+                        if (d.Name!.Length == 0 || d.Name!.Contains(Strings.Parser.NameBaseUnwanted, StringComparison.Ordinal))
+                        {
+                            continue;
+                        }
+
+                        if (listGemResultData.FirstOrDefault(x => x.Name == d.Name) == null) listGemResultData.Add(d);
+                    }
                 }
                 // END OF PARSING
                 if (listWordResultData.Count > 0)
                 {
                     return WriteJson(datName, jsonPath, listWordResultData);
+                }
+                if (listGemResultData.Count > 0)
+                {
+                    return WriteJson(datName, jsonPath, listGemResultData);
                 }
                 return WriteJson(datName, jsonPath, listResultData);
             }
@@ -310,6 +326,27 @@ namespace XiletradeJson
                 using (StreamWriter writer = new(outputJson, false, Encoding.UTF8))
                 {
                     writer.Write(Json.Serialize<Words>(words));
+                }
+            }
+            return outputJson;
+        }
+
+        internal static string? WriteJson(string datName, string jsonPath, List<GemResultData> listGemResultData)
+        {
+            string? outputJson = null;
+
+            if (datName == Strings.Gems && listGemResultData.Count > 0)
+            {
+                Gems gems = new();
+                gems.Result = new GemResult[1];
+                gems.Result[0] = new();
+                gems.Result[0].Data = new GemResultData[listGemResultData.Count];
+                gems.Result[0].Data = listGemResultData.ToArray();
+
+                outputJson = jsonPath + "Gems.json";
+                using (StreamWriter writer = new(outputJson, false, Encoding.UTF8))
+                {
+                    writer.Write(Json.Serialize<Gems>(gems));
                 }
             }
             return outputJson;
