@@ -10,6 +10,7 @@ namespace XiletradeJson
 {
     internal static class Util
     {
+        internal static Bases? BasesOrigin { get; set; }
         internal static Bases? BasesEn { get; set; }
         internal static Mods? ModsEn { get; set; }
         internal static Monsters? MonstersEn { get; set; }
@@ -198,11 +199,23 @@ namespace XiletradeJson
                         GemResultData d = new()
                         {
                             Id = csv.GetField(0)?.Trim(),
-                            Name = csv.GetField(1)?.Trim()
+                            Name = csv.GetField(1)?.Trim(),
+                            Type = string.Empty,
+                            Disc = string.Empty
                         };
-                        if (d.Name!.Length == 0 || d.Name!.Contains(Strings.Parser.NameBaseUnwanted, StringComparison.Ordinal))
+
+                        if (d.Id is null || d.Name!.Length == 0 || d.Name!.Contains(Strings.Parser.NameBaseUnwanted, StringComparison.Ordinal))
                         {
                             continue;
+                        }
+
+                        string delimiter = "Alt";
+                        d.Disc = d.Id[d.Id.LastIndexOf(delimiter)..].ToLowerInvariant().Insert(delimiter.Length, "_");
+                        var shortId = d.Id[..(d.Id.LastIndexOf(delimiter))];
+                        if (shortId?.Length > 0)
+                        {
+                            var resultDat = BasesOrigin?.Result?[0].Data?.FirstOrDefault(x => x.ID.EndsWith(shortId));
+                            d.Type = resultDat?.Name;
                         }
 
                         if (listGemResultData.FirstOrDefault(x => x.Name == d.Name) == null) listGemResultData.Add(d);
@@ -258,6 +271,7 @@ namespace XiletradeJson
                 bases.Result[0].Data = new ResultData[listResultData.Count];
                 bases.Result[0].Data = listResultData.ToArray();
 
+                BasesOrigin = bases;
                 if (BasesEn is null)
                 {
                     BasesEn = bases;
